@@ -24,7 +24,8 @@ export async function getCompetitionListFromSheets() {
         date: row[1],
         gym: row[2],
         city: row[3],
-        link: row[4]
+        link: row[4],
+        type: row[5]
       }));
     }
     return {};

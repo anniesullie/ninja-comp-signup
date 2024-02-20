@@ -5,6 +5,11 @@ import { getCompetitionListFromSheets } from "./api/sheets";
 
 export default function Home({ data }) {
   let title = `${process.env.NEXT_PUBLIC_GYM_NAME} outside competition sign up`;
+  let qualifierLinks = {
+    'UNAA': 'https://ninjamasterapp.com/app/leagues/UNAA/seasons/9/qualified_athletes/200',
+    'FINA': 'https://fina.ninja/standings-season-v/',
+    'WNL': 'https://worldninjaleague.org/tier-1-standings/'
+  };
   return (
     <div className={styles.container}>
       <Head>
@@ -14,19 +19,31 @@ export default function Home({ data }) {
 
       <main>
         <h1 className={styles.title}>{title}</h1>
+        <div>
         <ul className={styles.grid}>
-          {data && data.length ? (
+          {data && data.length  ? (
             data.map((item) => (
               <li key={item} className={styles.card}>
                 <span>
                   <h2>
-                    {item.date}: {item.league} at <a
+                    {item.date}: {item.league} {item.type != 'open' && item.type} at <a
                       href={`https://www.google.com/maps/search/?api=1&query=${item.gym}, ${item.city}`}
                       target="_blank"
                       rel="noreferrer">{item.gym} in {item.city}</a>
                   </h2>
                   {item.link ? (
                   <span>
+                    {item.type != 'open' && (
+                      <p>This is a <strong>{item.type}</strong> competition; athletes
+                      need to qualify during the regular season to compete. You
+                      can check if your child is qualified <a href={qualifierLinks[item.league]}
+                         target="_blank"
+                         rel="noreferrer">in the {item.league} standings</a>.
+                      {item.league != 'UNAA' && (
+                        <span>Click on your child&apos; age group. A <strong>Q</strong>
+                        will appear next to their name in the standings if they are qualified.</span> 
+                      )}</p>
+                    )}
                     <p>
                     Please enter your child&apos;s name so we can be sure to have a
                     coach present, and then continue on to register for the
@@ -72,9 +89,10 @@ export default function Home({ data }) {
               </li>
             ))
           ) : (
-            <li>Error: do not forget to setup your env variables 👇</li>
+            <li>Error: do not forget to setup your env variables</li>
           )}
         </ul>
+        </div>
       </main>
     </div>
   );
