@@ -4,7 +4,7 @@ import styles from "../styles/Home.module.css";
 import { getCompetitionListFromSheets } from "./api/sheets";
 
 export default function Home({ data }) {
-  let title = `${process.env.NEXT_PUBLIC_GYM_NAME} outside competition sign up`;
+  let title = `${process.env.NEXT_PUBLIC_GYM_NAME} away competition sign up`;
   let qualifierLinks = {
     'UNAA': 'https://ninjamasterapp.com/app/leagues/UNAA/seasons/9/qualified_athletes/200',
     'FINA': 'https://fina.ninja/standings-season-v/',
