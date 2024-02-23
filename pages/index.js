@@ -19,6 +19,11 @@ export default function Home({ data }) {
 
       <main>
         <h1 className={styles.title}>{title}</h1>
+        {process.env.NEXT_PUBLIC_LINK_URL && (
+          <h2 className={styles.description}><a href={process.env.NEXT_PUBLIC_LINK_URL}
+                 target="_blank"
+                 rel="noreferrer">More information about competitions</a></h2>
+        )}
         <div>
         <ul className={styles.grid}>
           {data && data.length  ? (

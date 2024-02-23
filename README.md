@@ -38,4 +38,5 @@ managed by their kids' gym.
    2. `GOOGLE_SHEETS_CLIENT_EMAIL`: The service account email from step 6.i above
    3. `GOOGLE_SHEETS_PRIVATE_KEY`: The private key from step 6.ii above
    4. `GOOGLE_SHEETS_ID`: the id from step 6.iii above
+   5. (Optional) `NEXT_PUBLIC_LINK_URL`: a link to more information about the competitions
 5. Deploy!

@@ -33,3 +33,4 @@ game-pass-day-one-f87c55fa862c.json
 
 # vercel
 .vercel
+.env*.local
