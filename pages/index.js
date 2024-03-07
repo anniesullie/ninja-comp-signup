@@ -53,6 +53,10 @@ export default function Home({ data }) {
                     Please enter your child&apos;s name so we can be sure to have a
                     coach present, and then continue on to register for the
                     competition at the gym&apos;s site.
+                    <a className={styles.note}
+                       href={item.link}
+                       target="_blank"
+                       rel="noreferrer">Learn more before registering.</a>
                     </p>
                     <form method="post" action="/api/submit">
                       <input type="text"

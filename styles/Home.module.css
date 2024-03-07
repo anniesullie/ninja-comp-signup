@@ -79,3 +79,8 @@
     flex-direction: column;
   }
 }
+
+.note {
+  font-size: 0.8rem;
+  margin-left: 10px;
+}
