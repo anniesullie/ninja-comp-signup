@@ -50,9 +50,9 @@ export default function Home({ data }) {
                       )}</p>
                     )}
                     <p>
-                    Please enter your child&apos;s name so we can be sure to have a
-                    coach present, and then continue on to register for the
-                    competition at the gym&apos;s site.
+                    Please enter your child&apos;s full name so we can be sure to have a
+                    coach present, along with your mobile phone number,
+                    and then continue on to register for the competition at the gym&apos;s site.
                     <a className={styles.note}
                        href={item.link}
                        target="_blank"
@@ -61,9 +61,17 @@ export default function Home({ data }) {
                     <form method="post" action="/api/submit">
                       <input type="text"
                             name="competitorName"
-                            placeholder="Your Child's Name"
+                            placeholder="Child's First/Last Name"
+                            pattern="^\w[\w\-\x27]+ \w[\w\-\x27]+$"
+                            title="Please enter both first and last name"
                             maxLength={70}
-                            required></input>
+                            required/>
+                      <input type="tel"
+                             required
+                             pattern="^\+?1?\(?\d{3}\)?\x2D?\d{3}\x2D?\d{4}$"
+                             name="competitorMobile"
+                             placeholder="Your Mobile Phone Number"
+                             title="Please enter a valid phone number"/>
                       {item.league == 'WNL' ? (
                         <select name="competitorDivision" required>
                           <option value="">Age Group</option>

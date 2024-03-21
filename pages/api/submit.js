@@ -10,9 +10,9 @@ export default async function handler(req, res) {
   await addCompetitorToSheet(
     data.competitorName,
     data.competitorDivision,
+    data.competitorMobile,
     data.date,
     data.league,
     data.gym);
-  console.log(302, data.registrationLink);
   res.redirect(302, data.registrationLink);
 }

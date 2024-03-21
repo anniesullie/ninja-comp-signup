@@ -37,7 +37,7 @@ export async function getCompetitionListFromSheets() {
 }
 
 export async function addCompetitorToSheet(
-  competitorName, competitorDivision, date, league, gym) {
+  competitorName, competitorDivision, competitorMobile, date, league, gym) {
     try {
       const scopes = ["https://www.googleapis.com/auth/spreadsheets"];
       const jwt = new google.auth.JWT(
@@ -49,7 +49,7 @@ export async function addCompetitorToSheet(
   
       const sheets = google.sheets({ version: "v4", auth: jwt });
 
-      let newRows = [[competitorName, competitorDivision]];
+      let newRows = [[competitorName, competitorDivision, competitorMobile]];
       let sheetName = `${date} ${league} at ${gym}`;
       let spreadsheetId = process.env.GOOGLE_SHEETS_ID;
   
@@ -76,11 +76,12 @@ export async function addCompetitorToSheet(
           }
         });
         // Add a header, the frozen row in `gridProperties` above.
-        newRows.unshift(['Name', 'Division']);
+        newRows.unshift(['Name', 'Division', 'Mobile']);
       }
+      console.log('Adding new rows: ', newRows);
       const addResponse = await sheets.spreadsheets.values.append({
         spreadsheetId: spreadsheetId,
-        range: `${sheetName}!A1:C1`,
+        range: `${sheetName}!A1:D1`,
         valueInputOption: 'RAW',
         resource: {
           values: newRows
